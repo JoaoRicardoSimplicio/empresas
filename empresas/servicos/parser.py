@@ -8,7 +8,7 @@ class Parser:
     def __init__(self, arquivo: IO[str]) -> None:
         self.conteudo = arquivo.readlines()
 
-    def executar(self) -> None:
+    def executar(self) -> list:
         self._remove_cabecalhos()
         return self._obtem_dados_empresas()
 
