@@ -26,6 +26,10 @@ SECRET_KEY = 'django-insecure-314kj6ivr*%!g5(e)n_=rt_#37$6!(q9u)gsce!+=#v3)3$d@j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+ENVIRONMENT = ''
+
+
 ALLOWED_HOSTS = []
 
 
@@ -79,8 +83,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_NAME', 'postgres'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgresuser'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgrespass'),
+        'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
+        'PORT': 5432,
     }
 }
 
@@ -139,3 +147,33 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s [%(name)s] %(levelname)s - %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
+        }
+    },
+    "loggers": {
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": True
+        },
+        "rq.worker": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": True
+        }
+    }
+}
