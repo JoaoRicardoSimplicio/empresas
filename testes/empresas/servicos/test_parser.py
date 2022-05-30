@@ -34,4 +34,4 @@ class TestParser(TestCase):
 
     def test_falha_obter_dados_arquivo_formato_incompativel_parser(self):
         empresas = self.parser_formato_incompativel.executar()
-        self.assertEqual([{}, {}], empresas)
+        self.assertEqual([], empresas)

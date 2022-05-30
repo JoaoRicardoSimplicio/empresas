@@ -28,8 +28,13 @@ class Parser:
         regex_sub = '(?:\t)+'
         regex_dados_compilada = re.compile(regex_dados)
         regex_sub_compilada = re.compile(regex_sub)
-        return [self._obtem_dados_empresa(linha, regex_dados_compilada, regex_sub) for linha in self.conteudo]
-
+        empresas = []
+        for linha in self.conteudo:
+            empresa = self._obtem_dados_empresa(linha, regex_dados_compilada, regex_sub)
+            if empresa:
+                empresas.append(empresa)
+        return empresas
+            
     def _obtem_dados_empresa(self, linha, regex_dados, regex_substituicao) -> dict:
         match = regex_dados.match(linha)
         try:
@@ -41,5 +46,5 @@ class Parser:
                 'endereco': re.sub(regex_substituicao, ' ', match.group('endereco')).strip()
             }
         except AttributeError:
-            empresa = {}
+            empresa = None
         return empresa

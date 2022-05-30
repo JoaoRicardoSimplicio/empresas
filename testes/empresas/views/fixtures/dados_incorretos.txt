@@ -1,0 +1,1 @@
+Comprador	Descrição	Preço Unitário	Quantidade	Endereço	Fornecedor

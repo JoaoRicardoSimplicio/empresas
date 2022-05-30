@@ -11,11 +11,13 @@ def salva_empresa(empresa: dict) -> Empresa:
         pass
 
 
-def salva_relatorio(arquivo: IO[str]) -> str:
+def salva_relatorio(arquivo: IO[str], nome_arquivo: str = None) -> str:
     parser = Parser(arquivo=arquivo)
-    nome_arquivo = arquivo.name.split('/')[-1]
-    relatorio = Relatorio.objects.create(nome=nome_arquivo)
+    nome_arquivo = arquivo.name.split('/')[-1].split('.')[0] if not nome_arquivo else nome_arquivo.split('.')[0]
     empresas = parser.executar()
+    if len(empresas) < 1 or Relatorio.objects.filter(nome=nome_arquivo).exists():
+        return
+    relatorio = Relatorio.objects.create(nome=nome_arquivo)
     total = 0
     for empresa in empresas:
         empresa_salva = salva_empresa(empresa=empresa)
