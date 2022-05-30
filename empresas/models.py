@@ -17,7 +17,7 @@ class Empresa(models.Model):
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     quantidade = models.IntegerField()
     endereco = models.TextField()
-    relatorio = models.ForeignKey(Relatorio, on_delete=models.PROTECT, null=True)
+    relatorio = models.ForeignKey(Relatorio, related_name='empresas', on_delete=models.PROTECT, null=True)
 
     def delete(self) -> None:
         self.relatorio.total -= self.preco
