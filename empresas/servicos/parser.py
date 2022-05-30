@@ -30,11 +30,11 @@ class Parser:
         regex_sub_compilada = re.compile(regex_sub)
         empresas = []
         for linha in self.conteudo:
-            empresa = self._obtem_dados_empresa(linha, regex_dados_compilada, regex_sub)
+            empresa = self._obtem_dados_empresa(linha, regex_dados_compilada, regex_sub_compilada)
             if empresa:
                 empresas.append(empresa)
         return empresas
-            
+
     def _obtem_dados_empresa(self, linha, regex_dados, regex_substituicao) -> dict:
         match = regex_dados.match(linha)
         try:

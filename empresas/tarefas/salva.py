@@ -13,7 +13,9 @@ def salva_empresa(empresa: dict) -> Empresa:
 
 def salva_relatorio(arquivo: IO[str], nome_arquivo: str = None) -> str:
     parser = Parser(arquivo=arquivo)
-    nome_arquivo = arquivo.name.split('/')[-1].split('.')[0] if not nome_arquivo else nome_arquivo.split('.')[0]
+    nome_arquivo = arquivo.name.split('/')[-1].split('.')[0] \
+        if not nome_arquivo \
+        else nome_arquivo.split('.')[0]
     empresas = parser.executar()
     if len(empresas) < 1 or Relatorio.objects.filter(nome=nome_arquivo).exists():
         return

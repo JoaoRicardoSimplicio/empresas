@@ -21,6 +21,7 @@ RESULTADOS = [
     {"comprador": "Paul Pond", "descricao": "R$30 of awesome for R$10", "preco": 10.0, "quantidade": 15, "endereco": "456 Unreal Rd Tom's Awesome Shop"},
 ]
 
+
 class TestParser(TestCase):
 
     def setUp(self):

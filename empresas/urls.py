@@ -1,7 +1,12 @@
 from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
 
-from empresas.views import *
+from empresas.views import (
+    EmpresaDetailView,
+    EmpresaListView,
+    HomeView,
+    RelatorioDetailView,
+    RelatorioListView
+)
 
 
 app_name = 'empresas'

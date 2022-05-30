@@ -20,14 +20,19 @@ ETL sobre esse arquivo e disponibiliza as informações via api.
 
 ### Setup
 
-Incie os containers da stack
+Inicie os containers da stack
 ```bash
 $ docker-compose up -d
 ```
 
-Ative o ambiente virtual
+Crie o ambiente virtual
 ```bash
 $ python3.7 -m venv env
+```
+
+Ative o ambiente virtual
+```bash
+$ source env/bin/activate
 ```
 
 Instale as dependências do projeto:
@@ -35,10 +40,12 @@ Instale as dependências do projeto:
 $ (env) pip install -r requirements/base.txt
 ```
 
-Exucete as migrations do projeto:
+Execute as migrations do projeto:
 ```bash
 $ (env) python3 manage.py migrate
 ```
+
+Acesse a aplicação localmente usando a seguinte url: `http://127.0.0.1:8000`
 
 
 ### Testes

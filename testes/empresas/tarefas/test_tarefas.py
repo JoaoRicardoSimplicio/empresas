@@ -43,7 +43,7 @@ class TestTarefas(TransactionTestCase):
             {"comprador": "João", "descricao": "R$10 off", "preco": 10.0, "quantidade": 2, "endereco": "987 Fake"}
         ]
         arquivo = open('dados.txt', 'r')
-        relatorio = salva_relatorio(arquivo)
+        _ = salva_relatorio(arquivo)
         self.assertEqual(2, Empresa.objects.count())
         self.assertTrue(Empresa.objects.filter(comprador='João R.').exists())
         self.assertTrue(Empresa.objects.filter(comprador='João').exists())
@@ -61,6 +61,6 @@ class TestTarefas(TransactionTestCase):
             {"compr": "João", "descricao": "R$10 off", "prco": 12.0, "quantidade": 2, "endereco": "987 Fake"}
         ]
         arquivo = open('dados.txt', 'r')
-        relatorio = salva_relatorio(arquivo)
+        _ = salva_relatorio(arquivo)
         self.assertEqual(3, Empresa.objects.count())
         self.assertEqual(32.00, Relatorio.objects.first().total)

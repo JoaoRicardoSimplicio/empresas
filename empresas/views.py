@@ -7,7 +7,6 @@ from django.views import View
 from rest_framework import (
     filters,
     generics,
-    views
 )
 
 from empresas.models import (

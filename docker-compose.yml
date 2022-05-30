@@ -4,7 +4,7 @@ services:
   api:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
-    container_name: empresas-web
+    container_name: empresas-api
     ports:
       - "8000:8000"
     environment:
